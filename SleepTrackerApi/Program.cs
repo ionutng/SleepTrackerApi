@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SleepTrackerApi.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SleepTrackerApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SleepTrackerApiContext") ?? throw new InvalidOperationException("Connection string 'SleepTrackerApiContext' not found.")));
 
 // Add services to the container.
 
